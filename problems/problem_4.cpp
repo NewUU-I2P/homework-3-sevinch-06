@@ -1,9 +1,9 @@
-#include <iostream>
+
 #include <sstream>
 #include <string>
 
-int main() {
-    std::string macAddress;
+
+    std::string problemSolution4(const std::string &macAddress){
 
    std::stringstream ss(macAddress);
 std::string hexNumber;
