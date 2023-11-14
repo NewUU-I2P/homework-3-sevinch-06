@@ -5,31 +5,20 @@
 int main() {
     std::string macAddress;
 
-    // Input
-    std::cout << "Enter MAC address (in x:x:xx:xx format): ";
-    std::getline(std::cin, macAddress);
+   std::stringstream ss(macAddress);
+std::string hexNumber;
+int firstOctet;
 
-    // Tokenize the MAC address
-    std::istringstream iss(macAddress);
-    std::string token;
-    std::getline(iss, token, ':');  // Read the first octet
+std::getline(ss, hexNumber, ':');
+std::stringstream(hexNumber)>>std::hex>> firstOctet;
 
-    // Convert the first octet to an integer
-    int firstOctet;
-    std::istringstream(token) >> std::hex >> firstOctet;
-
-    // Determine the type based on the rules
-    std::string addressType;
-    if (firstOctet % 2 == 0) {
-        addressType = "Unicast";
-    } else if (firstOctet == 0xFF) {
-        addressType = "Broadcast";
-    } else {
-        addressType = "Multicast";
-    }
-
-    // Output the result
-    std::cout << "Address Type: " << addressType << std::endl;
-
-    return 0;
+std::string addressType;
+if (firstOctet % 2 == 0){
+   addressType="Unicast";
+}else if (firstOctet==0xFF){
+   addressType="Broadcast";
+}else{
+   addressType="Multicast";
+}
+return 0;
 }
