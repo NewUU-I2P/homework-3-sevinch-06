@@ -1,19 +1,24 @@
-#include <string>
+#include <iostream>
 #include <sstream>
+#include <string>
 
-std::string problemSolution4(const std::string &macAddress) {
-    std::string result;
-   std::cout << "Enter MAC address (in x:x:xx:xx format): ";
+int main() {
+    std::string macAddress;
+
+    // Input
+    std::cout << "Enter MAC address (in x:x:xx:xx format): ";
     std::getline(std::cin, macAddress);
 
+    // Tokenize the MAC address
     std::istringstream iss(macAddress);
     std::string token;
     std::getline(iss, token, ':');  // Read the first octet
 
+    // Convert the first octet to an integer
     int firstOctet;
     std::istringstream(token) >> std::hex >> firstOctet;
 
-
+    // Determine the type based on the rules
     std::string addressType;
     if (firstOctet % 2 == 0) {
         addressType = "Unicast";
@@ -23,6 +28,7 @@ std::string problemSolution4(const std::string &macAddress) {
         addressType = "Multicast";
     }
 
+    // Output the result
     std::cout << "Address Type: " << addressType << std::endl;
 
     return 0;
